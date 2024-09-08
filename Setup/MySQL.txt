@@ -1,0 +1,30 @@
+in Applications.properties ->
+spring.jpa.hibernate.ddl-auto=update
+spring.datasource.url=jdbc:mysql://localhost:3306/mydatabase
+spring.datasource.username=admin
+spring.datasource.password=password
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.jpa.show-sql: true
+
+
+Download Install MySQL (root; password)...create database for app in mysql command line tool (create database GrabGrub_FoodApp)
+
+
+
+In App java ->
+Create Entity models for DB
+(User.java) #Due to lombok no need of defining getter, setters, :Etc
+package com.example.GrabGrubApp.model;
+
+import jakarta.persistence.Entity;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class User {
+    
+}
