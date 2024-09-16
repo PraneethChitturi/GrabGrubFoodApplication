@@ -1,4 +1,4 @@
-import { IconButton } from "@mui/material";
+import { Chip, IconButton } from "@mui/material";
 import React from "react";
 import { RemoveCircleOutline, AddCircleOutline } from "@mui/icons-material";
 const CartItem = () => {
@@ -8,7 +8,7 @@ const CartItem = () => {
         <div>
           <img
             className="w-[5rem] h-[5rem] object-cover"
-            sec="https://cdn.pixabay.com/photo/2022/02/12/15/00/biryani-7009110_640.jpg"
+            src="https://cdn.pixabay.com/photo/2022/02/12/15/00/biryani-7009110_640.jpg"
             alt=""
           />
         </div>
@@ -27,7 +27,13 @@ const CartItem = () => {
               </IconButton>
             </div>
           </div>
+          <p>$1956</p>
         </div>
+      </div>
+      <div className="pt-3 space-x-2">
+        {[1, 1, 1].map((item) => (
+          <Chip label={"Bread"} />
+        ))}
       </div>
     </div>
   );
