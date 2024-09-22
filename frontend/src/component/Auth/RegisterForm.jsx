@@ -37,7 +37,7 @@ const RegisterForm = () => {
         <Form>
           <Field
             as={TextField}
-            name="fullname"
+            name="fullName"
             label="Full Name"
             fullWidth
             variant="outlined"

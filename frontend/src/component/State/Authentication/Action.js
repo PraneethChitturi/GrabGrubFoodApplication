@@ -66,7 +66,7 @@ export const loginUser = (reqData) => async (dispatch) => {
 export const getUser = (jwt) => async (dispatch) => {
   dispatch({ type: GET_USER_REQUEST });
   try {
-    const { data } = await api.get(`${API_URL}/auth/signin`, {
+    const { data } = await api.get(`/api/users/profile`, {
       headers: {
         Authorization: `Bearer ${jwt}`,
       },
@@ -102,14 +102,12 @@ export const addToFavorites =
     }
   };
 
-export const logout =
-  ({ jwt, restaurantId }) =>
-  async (dispatch) => {
-    dispatch({ type: LOGOUT });
-    try {
-      localStorage.clear();
-      console.log("Logout Success");
-    } catch (error) {
-      console.log("Error: ", error);
-    }
-  };
+export const logout = () => async (dispatch) => {
+  dispatch({ type: LOGOUT });
+  try {
+    localStorage.clear();
+    console.log("Logout Success");
+  } catch (error) {
+    console.log("Error: ", error);
+  }
+};
