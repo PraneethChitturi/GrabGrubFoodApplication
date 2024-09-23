@@ -86,7 +86,8 @@ export const addToFavorites =
     dispatch({ type: ADD_TO_FAVORITE_REQUEST });
     try {
       const { data } = await api.put(
-        `/api/restaurants/${restaurantId}/add-favorites`,
+        `/api/restaurants/${restaurantId}/add-favorities`,
+        {},
         {
           headers: {
             Authorization: `Bearer ${jwt}`,

@@ -32,6 +32,7 @@ public class RestaurantServiceImp implements RestaurantService {
         Address address = addressRepository.save(req.getAddress());
 
         Restaurant restaurant = new Restaurant();
+        restaurant.setName(req.getName());
         restaurant.setAddress(address);
         restaurant.setContactInformation(req.getContactInformation());
         restaurant.setCuisineType(req.getCuisineType());

@@ -27,7 +27,7 @@ const demo = [
 
 const MenuCard = () => {
   const handleCheckBoxChange = (value) => {
-    console.log(value);
+    //console.log(value);
   };
   return (
     <div>
