@@ -1,5 +1,6 @@
 package com.example.GrabGrubApp.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.Optional;
@@ -30,6 +31,7 @@ public class FoodServiceImp implements FoodService {
         food.setIngredients(req.getIngredients());
         food.setSeasonal(req.isSeasonal());
         food.setVegeterian(req.isVegeterian());
+        food.setCreationDate(new Date());
 
         Food savedFood = foodRepository.save(food);
         restaurant.getFoods().add(savedFood);

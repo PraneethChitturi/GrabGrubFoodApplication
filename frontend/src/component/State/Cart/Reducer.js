@@ -35,14 +35,16 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         cart: action.payload,
-        cartItems: action.payload.items,
+        cartItems: Array.isArray(action.payload.items)
+          ? action.payload.items
+          : [],
       };
 
     case ADD_ITEM_TO_CART_SUCCESS:
       return {
         ...state,
         loading: false,
-        cartItems: [action.payload, ...state.cartItems],
+        cartItems: [...state.cartItems, action.payload],
       };
 
     case UPDATE_CARTITEM_SUCCESS:

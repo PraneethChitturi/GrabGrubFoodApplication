@@ -24,7 +24,7 @@ export const findCart = (token) => {
   return async (dispatch) => {
     dispatch({ type: FIND_CART_REQUEST });
     try {
-      const { data } = await api.get("/api/cart/", {
+      const { data } = await api.get("/api/cart", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -42,7 +42,7 @@ export const getAllCartItems = (reqData) => {
   return async (dispatch) => {
     dispatch({ type: GET_ALL_CART_ITEMS_REQUEST });
     try {
-      const { data } = api.get(`/api/carts/${reqData.cartId}/items`, {
+      const { data } = await api.get(`/api/carts/${reqData.cartId}/items`, {
         headers: {
           Authorization: `Bearer ${reqData.token}`,
         },
@@ -60,7 +60,7 @@ export const addItemToCart = (reqData) => {
   return async (dispatch) => {
     dispatch({ type: ADD_ITEM_TO_CART_REQUEST });
     try {
-      const { data } = api.get(`/api/cart/add`, reqData.cartItem, {
+      const { data } = await api.put(`/api/cart/add`, reqData.cartItem, {
         headers: {
           Authorization: `Bearer ${reqData.token}`,
         },
@@ -78,7 +78,7 @@ export const updateCartItem = (reqData) => {
   return async (dispatch) => {
     dispatch({ type: UPDATE_CARTITEM_REQUEST });
     try {
-      const { data } = api.put(`/api/cart-item/update`, reqData.data, {
+      const { data } = await api.put(`/api/cart-item/update`, reqData.data, {
         headers: {
           Authorization: `Bearer ${reqData.jwt}`,
         },
@@ -96,7 +96,7 @@ export const rmeoveCartItem = ({ cartItemId, jwt }) => {
   return async (dispatch) => {
     dispatch({ type: REMOVE_CARTITEM_REQUEST });
     try {
-      const { data } = api.delete(`/api/cart-item/${cartItemId}/remove`, {
+      const { data } = await api.delete(`/api/cart-item/${cartItemId}/remove`, {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },
@@ -114,7 +114,7 @@ export const clearCartAction = () => {
   return async (dispatch) => {
     dispatch({ type: CLEAR_CART_REQUEST });
     try {
-      const { data } = api.put(
+      const { data } = await api.put(
         `/api/cart/clear`,
         {},
         {

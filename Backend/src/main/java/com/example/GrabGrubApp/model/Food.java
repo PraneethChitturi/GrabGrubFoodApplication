@@ -1,7 +1,7 @@
 package com.example.GrabGrubApp.model;
 
 import java.util.ArrayList;
-
+import java.util.Date;
 import java.util.List;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -48,4 +48,6 @@ public class Food {
 
     @ManyToMany
     private List<IngredientsItem> ingredients = new ArrayList<>();
+
+    private Date creationDate;
 }

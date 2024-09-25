@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Navbar = () => {
-  const { auth } = useSelector((store) => store);
+  const { auth, cart } = useSelector((store) => store);
   const navigate = useNavigate();
   const handleAvatarClick = () => {
     if (auth.user?.role === "ROLE_CUSTOMER") {
@@ -51,8 +51,8 @@ const Navbar = () => {
           )}
         </div>
         <div className="flex items-center ">
-          <IconButton>
-            <Badge color="secondary" badgeContent={3}>
+          <IconButton onClick={() => navigate("/cart")}>
+            <Badge color="primary" badgeContent={cart.cart?.items?.length}>
               <ShoppingCart sx={{ fontSize: "1.5rem" }}></ShoppingCart>
             </Badge>
           </IconButton>
