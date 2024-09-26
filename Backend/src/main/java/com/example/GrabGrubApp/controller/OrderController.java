@@ -17,7 +17,9 @@ import com.example.GrabGrubApp.model.Order;
 import com.example.GrabGrubApp.model.User;
 import com.example.GrabGrubApp.request.AddCartItemRequest;
 import com.example.GrabGrubApp.request.OrderRequest;
+import com.example.GrabGrubApp.response.PaymentResponse;
 import com.example.GrabGrubApp.service.OrderService;
+import com.example.GrabGrubApp.service.PaymentService;
 import com.example.GrabGrubApp.service.UserService;
 
 @RestController
@@ -27,14 +29,27 @@ public class OrderController {
     private OrderService orderService;
 
     @Autowired
+    private PaymentService paymentService;
+
+    @Autowired
     private UserService userService;
 
+    // @PostMapping("/order")
+    // public ResponseEntity<Order> createOrder(@RequestBody OrderRequest req,
+    // @RequestHeader("Authorization") String jwt) throws Exception {
+    // User user = userService.findUserByJwtToken(jwt);
+    // Order order = orderService.createOrder(req, user);
+    // return new ResponseEntity<>(order, HttpStatus.OK);
+    //
+    // }
+
     @PostMapping("/order")
-    public ResponseEntity<Order> createOrder(@RequestBody OrderRequest req,
+    public ResponseEntity<PaymentResponse> createOrder(@RequestBody OrderRequest req,
             @RequestHeader("Authorization") String jwt) throws Exception {
         User user = userService.findUserByJwtToken(jwt);
         Order order = orderService.createOrder(req, user);
-        return new ResponseEntity<>(order, HttpStatus.OK);
+        PaymentResponse res = paymentService.createPaymentLink(order);
+        return new ResponseEntity<>(res, HttpStatus.OK);
 
     }
 
