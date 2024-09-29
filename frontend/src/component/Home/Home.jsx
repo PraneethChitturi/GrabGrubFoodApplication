@@ -11,11 +11,13 @@ const Home = () => {
   const dispatch = useDispatch();
   const jwt = localStorage.getItem("jwt");
   const navigate = useNavigate();
-  const { restaurant } = useSelector((store) => store);
+  const { restaurant, auth } = useSelector((store) => store);
+
   useEffect(() => {
     dispatch(getAllRestaurantsAction(jwt));
+    console.log(restaurant.restaurants);
     dispatch(findCart(jwt));
-  });
+  }, []);
 
   return (
     <div className="pb-10">

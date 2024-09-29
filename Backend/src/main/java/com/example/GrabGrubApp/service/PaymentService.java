@@ -9,5 +9,5 @@ import com.example.GrabGrubApp.response.PaymentResponse;
 import lombok.Data;
 
 public interface PaymentService {
-    public PaymentResponse createPaymentLink(Order order);
+    public void createPaymentLink(Order order);
 }

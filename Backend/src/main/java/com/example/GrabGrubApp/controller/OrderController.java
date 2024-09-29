@@ -34,24 +34,25 @@ public class OrderController {
     @Autowired
     private UserService userService;
 
-    // @PostMapping("/order")
-    // public ResponseEntity<Order> createOrder(@RequestBody OrderRequest req,
-    // @RequestHeader("Authorization") String jwt) throws Exception {
-    // User user = userService.findUserByJwtToken(jwt);
-    // Order order = orderService.createOrder(req, user);
-    // return new ResponseEntity<>(order, HttpStatus.OK);
-    //
-    // }
-
     @PostMapping("/order")
-    public ResponseEntity<PaymentResponse> createOrder(@RequestBody OrderRequest req,
+    public ResponseEntity<Order> createOrder(@RequestBody OrderRequest req,
             @RequestHeader("Authorization") String jwt) throws Exception {
         User user = userService.findUserByJwtToken(jwt);
         Order order = orderService.createOrder(req, user);
-        PaymentResponse res = paymentService.createPaymentLink(order);
-        return new ResponseEntity<>(res, HttpStatus.OK);
+        return new ResponseEntity<>(order, HttpStatus.OK);
 
     }
+
+    // @PostMapping("/order")
+    // public ResponseEntity<PaymentResponse> createOrder(@RequestBody OrderRequest
+    // req,
+    // @RequestHeader("Authorization") String jwt) throws Exception {
+    // User user = userService.findUserByJwtToken(jwt);
+    // Order order = orderService.createOrder(req, user);
+    // PaymentResponse res = paymentService.createPaymentLink(order);
+    // return new ResponseEntity<>(res, HttpStatus.OK);
+    //
+    // }
 
     @GetMapping("/orders/user")
     public ResponseEntity<List<Order>> getOrderHistory(

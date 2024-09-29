@@ -23,7 +23,7 @@ import com.example.GrabGrubApp.service.UserService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/restaurants")
+@RequestMapping("/restaurants")
 public class RestaurantController {
     @Autowired
     private RestaurantService restaurantService;
@@ -31,7 +31,7 @@ public class RestaurantController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/search")
+    @GetMapping("/api/restaurants/search")
     public ResponseEntity<List<Restaurant>> searchRestaurant(
             @RequestHeader("Authorization") String jwt,
             @RequestParam String keyword) throws Exception {
@@ -42,15 +42,14 @@ public class RestaurantController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<Restaurant>> getAllRestaurant(
-            @RequestHeader("Authorization") String jwt) throws Exception {
-        User user = userService.findUserByJwtToken(jwt);
+    public ResponseEntity<List<Restaurant>> getAllRestaurant() throws Exception {
+        // User user = userService.findUserByJwtToken(jwt);
         List<Restaurant> restaurant = restaurantService.getAllRestaurant();
 
         return new ResponseEntity<>(restaurant, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/api/restaurants/{id}")
     public ResponseEntity<Restaurant> findRestaurantById(
             @RequestHeader("Authorization") String jwt,
             @PathVariable Long id) throws Exception {
@@ -60,7 +59,7 @@ public class RestaurantController {
         return new ResponseEntity<>(restaurant, HttpStatus.OK);
     }
 
-    @PutMapping("/{id}/add-favorities")
+    @PutMapping("/api/restaurants/{id}/add-favorities")
     public ResponseEntity<RestaurantDto> addToFavorities(
             @RequestHeader("Authorization") String jwt,
             @PathVariable Long id) throws Exception {
