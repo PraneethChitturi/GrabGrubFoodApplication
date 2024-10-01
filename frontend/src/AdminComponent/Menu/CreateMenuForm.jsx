@@ -160,22 +160,40 @@ const CreateMenuForm = () => {
               ></TextField>
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                fullWidth
-                id="category"
-                name="category"
-                label="Food Category"
-                variant="outlined"
-                onChange={formik.handleChange}
-                value={formik.values.category}
-              ></TextField>
+              <FormControl fullWidth>
+                <InputLabel id="category">Category</InputLabel>
+                <Select
+                  labelId="Category"
+                  label="Category"
+                  id="category"
+                  name="category"
+                  value={formik.values.category}
+                  onChange={formik.handleChange}
+                  input={
+                    <OutlinedInput id="select-multiple-chip" label="Category" />
+                  }
+                  renderValue={(selected) => (
+                    <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+                      {selected.map((value) => (
+                        <Chip key={value} label={value} />
+                      ))}
+                    </Box>
+                  )}
+                  MenuProps={MenuProps}
+                >
+                  <MenuItem value={[10]}>Ten</MenuItem>
+                  <MenuItem value={[20]}>Twenty</MenuItem>
+                  <MenuItem value={[30]}>Thirty</MenuItem>
+                </Select>
+              </FormControl>
             </Grid>
-            <Grid item xs={12} lg={4}>
-              <FormControl sx={{ m: 1, width: 300 }}>
+            <Grid item xs={12} lg={12}>
+              <FormControl fullWidth>
                 <InputLabel id="ingredients">Ingredients</InputLabel>
                 <Select
                   labelId="ingredients"
                   id="ingredients"
+                  name="ingredients"
                   multiple
                   value={formik.values.ingredients}
                   onChange={formik.handleChange}
@@ -194,91 +212,59 @@ const CreateMenuForm = () => {
                   )}
                   MenuProps={MenuProps}
                 >
-                  {[1, 1, 1].map((name, index) => (
+                  {["Bread", "Sauce", "Fruits"].map((name, index) => (
                     <MenuItem key={name} value={name}>
-                      {index}
+                      {name}
                     </MenuItem>
                   ))}
                 </Select>
               </FormControl>
             </Grid>
-            <Grid item xs={12} lg={4}>
-              <TextField
-                fullWidth
-                id="stateProvince"
-                name="stateProvince"
-                label="State/Province"
-                variant="outlined"
-                onChange={formik.handleChange}
-                value={formik.values.stateProvince}
-              ></TextField>
-            </Grid>
-            <Grid item xs={12} lg={4}>
-              <TextField
-                fullWidth
-                id="postalCode"
-                name="postalCode"
-                label="Postal Code"
-                variant="outlined"
-                onChange={formik.handleChange}
-                value={formik.values.postalCode}
-              ></TextField>
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                id="country"
-                name="country"
-                label="Country"
-                variant="outlined"
-                onChange={formik.handleChange}
-                value={formik.values.country}
-              ></TextField>
+            <Grid item xs={12} lg={6}>
+              <FormControl fullWidth>
+                <InputLabel id="isVegeterian">Is Vegetarian</InputLabel>
+                <Select
+                  labelId="isVegeterian"
+                  label="Is Vegeterian"
+                  id="isVegeterian"
+                  name="isVegeterian"
+                  value={formik.values.vegeterian}
+                  onChange={formik.handleChange}
+                  input={
+                    <OutlinedInput
+                      id="select-multiple-chip"
+                      label="isVegeterian"
+                    />
+                  }
+                  MenuProps={MenuProps}
+                >
+                  <MenuItem value={true}>Yes</MenuItem>
+                  <MenuItem value={false}>No</MenuItem>
+                </Select>
+              </FormControl>
             </Grid>
             <Grid item xs={12} lg={6}>
-              <TextField
-                fullWidth
-                id="email"
-                name="email"
-                label="Email"
-                variant="outlined"
-                onChange={formik.handleChange}
-                value={formik.values.email}
-              ></TextField>
-            </Grid>
-
-            <Grid item xs={12} lg={6}>
-              <TextField
-                fullWidth
-                id="mobile"
-                name="mobile"
-                label="Mobile"
-                variant="outlined"
-                onChange={formik.handleChange}
-                value={formik.values.mobile}
-              ></TextField>
-            </Grid>
-            <Grid item xs={12} lg={6}>
-              <TextField
-                fullWidth
-                id="instagram"
-                name="instagram"
-                label="Instagram"
-                variant="outlined"
-                onChange={formik.handleChange}
-                value={formik.values.instagram}
-              ></TextField>
-            </Grid>
-            <Grid item xs={12} lg={6}>
-              <TextField
-                fullWidth
-                id="twitter"
-                name="twitter"
-                label="Twitter"
-                variant="outlined"
-                onChange={formik.handleChange}
-                value={formik.values.twitter}
-              ></TextField>
+              <FormControl fullWidth>
+                <InputLabel id="isSeasonal">Is Seasonal</InputLabel>
+                <Select
+                  labelId="isSeasonal"
+                  label="Is Seasonal"
+                  id="isSeasonal"
+                  name="isSeasonal"
+                  value={formik.values.seasonal}
+                  onChange={formik.handleChange}
+                  input={
+                    <OutlinedInput
+                      id="select-multiple-chip"
+                      label="isSeasonal"
+                    />
+                  }
+                  MenuProps={MenuProps}
+                >
+                  <MenuItem value={true}>Yes</MenuItem>
+                  <MenuItem value={false}>No</MenuItem>
+                </Select>
+              </FormControl>
             </Grid>
           </Grid>
           <Button
